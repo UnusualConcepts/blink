@@ -8,10 +8,6 @@ public class HelloWorldController {
 
     @RequestMapping("/")
     public String index() {
-        return "Hello world11!";
+        return "Hello world!";
     }
-//    @RequestMapping(method = RequestMethod.GET, path = "/hello")
-//    public String hello() {
-//        return "hello";
-//    }
 }
