@@ -3,20 +3,38 @@ buildscript {
 		springBootVersion = '2.1.2.RELEASE'
 	}
 	repositories {
-		mavenCentral()
-	}
+        mavenCentral()
+    }
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
 
+
+plugins {
+    id "com.palantir.docker" version "0.21.0"
+}
 apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'com.palantir.docker'
 apply plugin: 'io.spring.dependency-management'
 
-group = 'ru.uc'
-version = '0.0.1-SNAPSHOT'
+
+task unpack(type: Copy) {
+	dependsOn bootJar
+	from(zipTree(tasks.bootJar.outputs.files.singleFile))
+	into("build/dependency")
+}
+
+group = 'uc'
 sourceCompatibility = '1.8'
+
+docker {
+	name "${project.group}/${bootJar.baseName}"
+	copySpec.from(tasks.unpack.outputs).into("dependency")
+	buildArgs(['DEPENDENCY': "dependency"])
+}
 
 repositories {
 	mavenCentral()
@@ -34,4 +52,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
+}
+
+test {
+	filter {
+		includeTestsMatching "ru.uc.blink.*"
+	}
 }
