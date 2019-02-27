@@ -1,11 +1,10 @@
-image: docker:stable
+image: java:8
 
 stages:
   - build
 
 services:
   - docker:dind
-  - java:8
 
 build:
   stage: build
