@@ -12,4 +12,4 @@ build:
   - privileged
   - docker
   script:
-  - docker info
+  - ./build.sh
