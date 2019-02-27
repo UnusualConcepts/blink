@@ -1,4 +1,4 @@
-image: java:8
+image: docker:stable
 
 stages:
   - build
@@ -9,6 +9,7 @@ services:
 build:
   stage: build
   tags:
+  - privileged
   - docker
   script:
   - docker info
