@@ -1,4 +1,4 @@
-image: doker:stable
+image: java:8
 
 stages:
   - build
