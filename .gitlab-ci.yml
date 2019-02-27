@@ -6,6 +6,4 @@ stages:
 build:
   stage: build
   script:
-  - apt-get update -qy
-  - apt-get install -y docker
-  - ./build.sh
+  - echo hi
