@@ -5,6 +5,7 @@ stages:
 
 services:
   - docker:dind
+  - java:8
 
 build:
   stage: build
