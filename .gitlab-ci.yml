@@ -3,6 +3,9 @@ image: doker:stable
 stages:
   - build
 
+services:
+  - docker:dind
+
 build:
   stage: build
   tags:
