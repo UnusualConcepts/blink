@@ -5,6 +5,7 @@ stages:
 
 build:
   stage: build
-  tag: docker
+  tags:
+  - docker
   script:
   - docker info
