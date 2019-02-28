@@ -9,7 +9,6 @@ services:
 build:
   stage: build
   tags:
-  - privileged
-  - docker
+  - shell
   script:
   - ./build.sh
