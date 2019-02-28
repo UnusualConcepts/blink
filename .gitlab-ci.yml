@@ -25,5 +25,5 @@ test:
 deploy:
   stage: deploy
   script:
-    - install.sh
+    - ./install.sh
 
