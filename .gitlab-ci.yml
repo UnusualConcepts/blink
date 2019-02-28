@@ -3,6 +3,7 @@ image: docker:stable
 stages:
   - build
   - test
+  - deploy
 
 services:
   - java:8
@@ -20,3 +21,9 @@ test:
     - shell
   script:
   - ./test_e2e.sh
+
+deploy:
+  stage: deploy
+  script:
+    - install.sh
+
