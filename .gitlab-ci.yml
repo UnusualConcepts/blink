@@ -2,6 +2,7 @@ image: docker:stable
 
 stages:
   - build
+  - e2e test
 
 services:
   - java:8
@@ -12,3 +13,10 @@ build:
   - shell
   script:
   - ./build.sh
+
+e2e test:
+  stage: test
+  tags:
+    - shell
+  script:
+  - ./test_e2e.sh

@@ -1,13 +1,13 @@
 buildscript {
-	ext {
-		springBootVersion = '2.1.2.RELEASE'
-	}
-	repositories {
+    ext {
+        springBootVersion = '2.1.2.RELEASE'
+    }
+    repositories {
         mavenCentral()
     }
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 
@@ -22,40 +22,48 @@ apply plugin: 'io.spring.dependency-management'
 
 
 task unpack(type: Copy) {
-	dependsOn bootJar
-	from(zipTree(tasks.bootJar.outputs.files.singleFile))
-	into("build/dependency")
+    dependsOn bootJar
+    from(zipTree(tasks.bootJar.outputs.files.singleFile))
+    into("build/dependency")
 }
 
 group = 'uc'
 sourceCompatibility = '1.8'
 
 docker {
-	name "${project.group}/${bootJar.baseName}"
-	copySpec.from(tasks.unpack.outputs).into("dependency")
-	buildArgs(['DEPENDENCY': "dependency"])
+    name "${project.group}/${bootJar.baseName}"
+    copySpec.from(tasks.unpack.outputs).into("dependency")
+    buildArgs(['DEPENDENCY': "dependency"])
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
-	}
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
 
 test {
-	filter {
-		includeTestsMatching "ru.uc.blink.*"
-	}
+    filter {
+        includeTestsMatching "ru.uc.blink.*"
+    }
+}
+
+tasks.register("e2e") {
+    test {
+        filter {
+            includeTestsMatching "e2e.*"
+        }
+    }
 }

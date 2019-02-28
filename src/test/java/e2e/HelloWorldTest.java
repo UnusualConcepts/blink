@@ -18,7 +18,7 @@ public class HelloWorldTest {
 
     @Test
     public void shouldDisplayHelloMessage() throws Exception {
-        URL url = new URL("http://138.197.189.107:8080");
+        URL url = new URL("http://138.197.189.107:8081");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 
