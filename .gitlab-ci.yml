@@ -1,12 +1,9 @@
-image: docker:stable
+image: kroniak/ssh-client:latest
 
 stages:
   - build
   - test
   - deploy
-
-services:
-  - java:8
 
 build:
   stage: build
