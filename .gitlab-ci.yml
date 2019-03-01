@@ -8,15 +8,9 @@ stages:
 build:
   stage: build
   tags:
-  - shell
-  script:
-  - ./build.sh
-
-push_docker_image:
-  stage: build
-  tags:
     - shell
   script:
+    - ./build.sh
     - $DOCKER_HUB_PASSWORD > sudo docker login --username=2heoh --password-stdin
     - sudo docker tag uc/blink 2heoh/blink
     - sudo docker push 2heoh/blink
@@ -26,7 +20,7 @@ test:
   tags:
     - shell
   script:
-  - ./test_e2e.sh
+    - ./test_e2e.sh
 
 deploy:
   stage: deploy

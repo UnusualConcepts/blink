@@ -18,7 +18,7 @@ public class HelloWorldTest {
 
     @Test
     public void shouldDisplayHelloMessage() throws Exception {
-        URL url = new URL("http://138.197.189.107:8081");
+        URL url = new URL("http://localhost:8081");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 
@@ -28,6 +28,6 @@ public class HelloWorldTest {
             sb.append(output);
         }
 
-        assertTrue(sb.toString().contains("Hello world"));
+        assertTrue(sb.toString().contains("Hello error"));
     }
 }
