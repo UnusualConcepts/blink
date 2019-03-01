@@ -11,7 +11,7 @@ build:
     - shell
   script:
     - ./build.sh
-    - $DOCKER_HUB_PASSWORD > sudo docker login --username=2heoh --password-stdin
+    - echo $DOCKER_HUB_PASSWORD > sudo docker login --username=2heoh --password-stdin
     - sudo docker tag uc/blink 2heoh/blink
     - sudo docker push 2heoh/blink
 
