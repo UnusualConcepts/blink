@@ -1,0 +1,6 @@
+-[ ] fix unstable gradle
+-[ ] prepare test environment
+-[ ] prepare prod environment
+-[ ] clean *.sh (makefile?)
+-[ ] move e2e tests to distinct src
+-[ ] clean commits in git log
