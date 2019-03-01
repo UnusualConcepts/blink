@@ -1,4 +1,5 @@
--[ ] fix unstable gradle
+-[x] fix unstable gradle
+-[ ] fix on test teardown production dies
 -[ ] prepare test environment
 -[ ] prepare prod environment
 -[ ] clean *.sh (makefile?)
