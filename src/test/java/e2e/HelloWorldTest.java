@@ -28,6 +28,6 @@ public class HelloWorldTest {
             sb.append(output);
         }
 
-        assertTrue(sb.toString().contains("Hello world"));
+        assertTrue(sb.toString().contains("Hello error"));
     }
 }
