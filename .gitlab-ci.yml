@@ -20,7 +20,7 @@ test:
   tags:
     - shell
   script:
-    - sudo docker run -d -p 8081:8080 -t 2heoh/blink:master
+    - sudo docker run -d -p 8088:8080 -t 2heoh/blink:master
     - ./test_e2e.sh
     - sudo docker stop $(sudo docker ps -aq)
 
