@@ -7,16 +7,14 @@ build:
 	docker push 2heoh/blink
 
 test:
+	make docker-clean-test
 	docker run -d -p ${APP_PORT}:8080 --name e2e_test -t 2heoh/blink:master
-	nc -z -v -w1 ${APP_HOST} ${APP_PORT}
+	sleep 5
 	gradle e2eTest -i --rerun-tasks
+	make docker-clean-test
 
-test2:
-	gradle e2eTest -i --rerun-tasks
-
-clean:
-	docker stop $(DOCKER_ID)
-	docker rm $(DOCKER_ID)
+docker-clean-test:
+	docker stop $(DOCKER_ID) || true && docker rm $(DOCKER_ID) || true
 
 install:
 	./install.sh
