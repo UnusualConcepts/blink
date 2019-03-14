@@ -9,7 +9,7 @@ build:
 test:
 	make docker-clean-test
 	docker run -d -p ${APP_PORT}:8080 --name e2e_test -t 2heoh/blink:master
-	sleep 5
+	until [ `curl -s -o /dev/null -w "%{http_code}" http://$(APP_HOST):$(APP_PORT)` == "200" ]; do sleep 0.5; done
 	gradle e2eTest -i --rerun-tasks
 	make docker-clean-test
 
