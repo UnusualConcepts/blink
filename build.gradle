@@ -40,11 +40,30 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    e2eTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/e2e-test/java')
+        }
+        resources.srcDir file('src/e2e-test/resources')
+    }
+}
+
+task e2eTests(type: Test) {
+    testClassesDirs = sourceSets.e2eTest.output.classesDirs
+    classpath = sourceSets.e2eTest.runtimeClasspath
+}
+
 configurations {
     developmentOnly
     runtimeClasspath {
         extendsFrom developmentOnly
     }
+    e2eTestCompile.extendsFrom testCompile
+    e2eTestRuntime.extendsFrom testRuntime
+    e2eTestImplementation.extendsFrom testImplementation
 }
 
 dependencies {
@@ -52,18 +71,4 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-}
-
-test {
-    filter {
-        includeTestsMatching "ru.uc.blink.*"
-    }
-}
-
-tasks.register("e2e") {
-    test {
-        filter {
-            includeTestsMatching "e2e.*"
-        }
-    }
 }

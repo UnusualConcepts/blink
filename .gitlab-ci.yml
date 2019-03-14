@@ -11,20 +11,13 @@ build:
     - shell
   script:
     - ./build.sh
-    - echo $DOCKER_HUB_PASSWORD > sudo docker login --username=2heoh --password-stdin
-    - sudo docker tag uc/blink 2heoh/blink
-    - sudo docker push 2heoh/blink
 
 test:
   stage: test
   tags:
     - shell
-  before_script:
-    - sudo docker run -d -p 8088:8080 --name e2e_test -t 2heoh/blink:master
   script:
     - ./test_e2e.sh
-  after_script:
-    - sudo docker rm $(sudo docker stop $(sudo docker ps -f name=e2e_test --format {{.ID}}))
 
 deploy:
   stage: deploy

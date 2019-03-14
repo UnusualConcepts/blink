@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 uname -a
 sudo docker pull 2heoh/blink
 sudo docker stop $(sudo docker ps -q)

@@ -1,5 +1,3 @@
-package e2e;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +10,7 @@ import static junit.framework.TestCase.assertTrue;
 
 public class HelloWorldTest {
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         //TODO boot up server
     }
 
