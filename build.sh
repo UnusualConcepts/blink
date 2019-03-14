@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [[ "$1" = "local" ]]; then
+if [ "$1" = "local" ]; then
     ./gradlew build docker || exit 1
 else
     sudo gradle build docker || exit 1
