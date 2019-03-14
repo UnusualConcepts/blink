@@ -2,6 +2,7 @@
 -[ ] fix on test teardown production dies
 -[ ] prepare test environment
 -[ ] prepare prod environment
--[ ] clean *.sh (makefile?)
--[ ] move e2e tests to distinct src
+-[x] move build & test scripts to Makefile
+-[ ] clean install stage => Makefile
+-[x] move e2e tests to distinct src
 -[ ] clean commits in git log

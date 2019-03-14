@@ -28,5 +28,5 @@ deploy:
     - echo -e "Host *\n\tUser heoh\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
     - echo "$SSH_PRIVATE_KEY_STAGING" > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
-    - make install
+    - ./install.sh
 
