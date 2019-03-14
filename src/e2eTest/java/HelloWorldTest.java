@@ -9,14 +9,19 @@ import java.net.URL;
 import static junit.framework.TestCase.assertTrue;
 
 public class HelloWorldTest {
+
+    private URL url;
+
     @Before
-    public void setUp() {
-        //TODO boot up server
+    public void setUp() throws Exception {
+        String appAddress = "http://" + System.getenv("APP_HOST") + ":" + System.getenv("APP_PORT");
+        System.out.println("Generated APP address: " + appAddress);
+        url = new URL(appAddress);
     }
 
     @Test
     public void shouldDisplayHelloMessage() throws Exception {
-        URL url = new URL("http://localhost:8088");
+
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
 

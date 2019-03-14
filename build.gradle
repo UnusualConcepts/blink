@@ -13,6 +13,7 @@ buildscript {
 
 plugins {
     id "com.palantir.docker" version "0.21.0"
+    id "com.adarshr.test-logger" version "1.6.0"
 }
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -45,13 +46,19 @@ sourceSets {
         java {
             compileClasspath += main.output + test.output
             runtimeClasspath += main.output + test.output
-            srcDir file('src/e2e-test/java')
+            srcDir file('src/e2eTest/java')
         }
-        resources.srcDir file('src/e2e-test/resources')
+//        resources.srcDir file('src/e2eTest/resources')
     }
 }
 
-task e2eTests(type: Test) {
+test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+}
+
+task e2eTest(type: Test) {
     testClassesDirs = sourceSets.e2eTest.output.classesDirs
     classpath = sourceSets.e2eTest.runtimeClasspath
 }
