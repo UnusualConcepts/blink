@@ -10,14 +10,15 @@ build:
   tags:
     - shell
   script:
-    - ./build.sh
+    - make build
 
 test:
   stage: test
   tags:
     - shell
   script:
-    - ./test_e2e.sh
+    - make test
+    - make clean
 
 deploy:
   stage: deploy
@@ -27,5 +28,5 @@ deploy:
     - echo -e "Host *\n\tUser heoh\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
     - echo "$SSH_PRIVATE_KEY_STAGING" > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
-    - ./install.sh
+    - make install
 
