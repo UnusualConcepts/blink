@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-until [ "200" == `curl -s -o /dev/null -w "%{http_code}" http://$(APP_HOST):$(APP_PORT)` ]
+echo $1
+
+until [ "200" == `curl -s -o /dev/null -w "%{http_code}" $1` ]
 do
 sleep 0.5
 done
