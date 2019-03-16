@@ -8,13 +8,15 @@ build:
 
 test:
 	make docker-clean-test
-	docker run -d -p ${APP_PORT}:8080 --name e2e_test -t 2heoh/blink:master
+	if [ -z "$(APP_HOST)" ]; then echo "ERROR: APP_HOST is not set" && false; fi
+	if [ -z "$(APP_PORT)" ]; then echo "ERROR: APP_PORT is not set" && false; fi
+	docker run -d -p $(APP_PORT):8080 --name e2e_test -t 2heoh/blink:master
 	./check_service.sh http://$(APP_HOST):$(APP_PORT)
 	gradle e2eTest -i --rerun-tasks
 	make docker-clean-test
 
 docker-clean-test:
-	docker stop $(DOCKER_ID) || true && docker rm $(DOCKER_ID) || true
+	if [ ! -z "$(DOCKER_ID)" ]; then docker stop $(DOCKER_ID) || true && docker rm $(DOCKER_ID) || true; fi
 
 install:
 	./install.sh

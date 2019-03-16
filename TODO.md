@@ -1,8 +1,8 @@
--[x] fix unstable gradle
--[ ] fix on test teardown production dies
 -[ ] prepare test environment
 -[ ] prepare prod environment
--[x] move build & test scripts to Makefile
 -[ ] clean install stage => Makefile
--[x] move e2e tests to distinct src
 -[ ] clean commits in git log
+-[x] fix unstable gradle
+-[x] fix on test teardown production dies
+-[x] move build & test scripts to Makefile
+-[x] move e2e tests to distinct src
