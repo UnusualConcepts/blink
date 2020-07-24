@@ -3,7 +3,6 @@ image: kroniak/ssh-client:latest
 stages:
   - build
   - test
-  - deploy
 
 build:
   stage: build
