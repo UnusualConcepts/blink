@@ -2,7 +2,7 @@ DOCKER_ID = $$(docker ps -a -f name=e2e_test --format {{.ID}})
 
 build:
 	./gradlew build docker -i --rerun-tasks
-	echo "$(DOCKER_HUB_PASSWORD)" > sudo docker login --username=2heoh --password-stdin
+	echo "$(DOCKER_HUB_PASSWORD)" > docker login --username=2heoh --password-stdin
 	docker tag uc/blink 2heoh/blink
 	docker push 2heoh/blink
 
